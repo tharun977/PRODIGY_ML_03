@@ -42,7 +42,6 @@ To run this project, ensure you have the following installed:
 1. Python 3.x
 2. Required libraries can be installed using pip:
 
-```bash
 pip install tensorflow scikit-learn numpy opencv-python pandas
 Usage
 Clone the repository:
