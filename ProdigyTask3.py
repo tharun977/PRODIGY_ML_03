@@ -8,7 +8,6 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropou
 from tensorflow.keras.optimizers import Adam # type: ignore
 import tensorflow as tf
 
-# Check for GPU availability
 gpus = tf.config.list_physical_devices('GPU')
 if gpus:
     try:
@@ -20,14 +19,11 @@ if gpus:
 else:
     print("No GPUs available, using CPU.")
 
-# Set paths
 csv_path = 'C:\\Users\\Tharun Raman\\OneDrive\\Documents\\GitHub\\PRODIGY_ML_03\\dataset\\sampleSubmission.csv'
 image_dir = 'C:\\Users\\Tharun Raman\\OneDrive\\Documents\\GitHub\\PRODIGY_ML_03\\dataset\\train\\train'
 
-# Load the CSV data
 data = pd.read_csv(csv_path)
 
-# Prepare images and labels
 images = []
 labels = []
 
@@ -43,18 +39,14 @@ for index, row in data.iterrows():
         images.append(img_array)
         labels.append(img_label)
 
-# Convert lists to numpy arrays
 images = np.array(images)
 labels = np.array(labels)
 
-# Print shapes of images and labels
 print(f'Total images loaded: {len(images)}')
 print(f'Total labels collected: {len(labels)}')
 
-# Split the dataset
 X_train, X_val, y_train, y_val = train_test_split(images, labels, test_size=0.25, random_state=42)
 
-# Build the model
 model = Sequential()
 model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(64, 64, 3)))
 model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -67,16 +59,12 @@ model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(1, activation='sigmoid'))
 
-# Compile the model
 model.compile(optimizer=Adam(learning_rate=0.0001), loss='binary_crossentropy', metrics=['accuracy'])
 
-# Train the model
 history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=10, batch_size=32)
 
-# Save the model
 model.save('cat_dog_classifier.keras')
 
-# Classification code
 model = load_model('cat_dog_classifier.keras')
 test_image_dir = 'C:\\Users\\Tharun Raman\\OneDrive\\Documents\\GitHub\\PRODIGY_ML_03\\dataset\\test1'
 
