@@ -67,7 +67,6 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
 ### Notes:
 - Replace any placeholder information (like URLs) with actual data relevant to your project.
 - Make sure to create a LICENSE file if you want to include licensing information.
